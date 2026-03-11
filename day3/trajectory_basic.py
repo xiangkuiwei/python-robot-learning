@@ -27,11 +27,11 @@ for i, fruit in enumerate(fruits):
 
 # 多关节版本
 def multi_joint_trajectory(joint_starts, joint_ends, steps):
-    num_joints = len(joint_starts)
-    trajectory = []
-    for step in range(steps):
-        step_angles = []
-        for j in range(num_joints):
+    num_joints = len(joint_starts)   # 获取关节数量
+    trajectory = []                  # 存储所有轨迹点
+    for step in range(steps):        # 遍历每一步
+        step_angles = []             # 存储当前步各关节的角度
+        for j in range(num_joints):  # 遍历每个关节
             delta = (joint_ends[j]-joint_starts[j])/(steps - 1)
             angle = joint_starts[j] + step*delta
             step_angles.append(angle)
@@ -52,5 +52,5 @@ print(f"步数: {steps}")
 print("-"*40)
 
 for step, angles in multi_traj:
-    angles_str = [f"{a:.3f}" for a in angles]
+    angles_str = [f"{a:.3f}" for a in angles]    # 格式化角度到3位小数
     print(f"步骤{step:2d}:{angles_str}")
